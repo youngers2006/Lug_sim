@@ -1,12 +1,6 @@
 clc
 clear
 
-% add row function
-
-function Mat2 = append_row(Mat1,addition)
-    Mat2 = [Mat1;addition];
-end
-
 % Lug geometry
 A = 10;
 Cd = 0.2;
@@ -19,9 +13,15 @@ g = 9.81;
 rho = 1.225;
 
 % Initial pos
+X_release = 3;
+Y_release = 20;
+Z_release = 5;
 pos_I = [X_release; Y_release; Z_release];
 
 % Initial vel
+U_release = 2;
+V_release = -1;
+W_release = 2;
 vel_I = [U_release; V_release; W_release];
 
 % state
@@ -39,6 +39,7 @@ options = odeset('Events', @groundImpact);
 % safety radius: launchpad position is [0; 0; 0]
 x_e = state_e(1);
 z_e = state_e(3);
+speed = vecnorm(state_solution(4:6));
 
 % impact
 safety_radius = sqrt((x_e ^ 2) + (z_e ^ 2));
@@ -57,6 +58,9 @@ ylabel("y / m")
 zlabel("z / m")
 
 figure
-plot()
+plot(state(2), speed)
+title("Speed against Height")
+xlabel("Height / m")
+ylabel("Speed / (m/s)")
 
 
