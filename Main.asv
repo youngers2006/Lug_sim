@@ -40,14 +40,13 @@ options = odeset('Events', @groundImpact);
 x_e = state_e(1);
 z_e = state_e(3);
 
-% impact
+% 
 safety_radius = sqrt((x_e ^ 2) + (z_e ^ 2));
 impact_speed = sqrt((state(4) ^ 2) + (state(5) ^ 2) + (state(6) ^ 2));
 impact_KE = 0.5 * m * (impact_speed ^ 2);
 
 print(safety_radius)
-print(impact_speed)
-print(impact_KE)
+print()
 
 figure
 plot3d(state(1), state(2), state(3))
@@ -57,6 +56,6 @@ ylabel("y / m")
 zlabel("z / m")
 
 figure
-plot()
+plot
 
 
